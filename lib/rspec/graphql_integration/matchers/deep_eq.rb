@@ -14,13 +14,13 @@ module RSpec
         end
 
         def deep_eq?(actual, expected)
-          return arrays_match?(actual, expected) if expected.is_a?(Array) && actual.is_a?(Array)
-          return hashes_match?(actual, expected) if expected.is_a?(Hash) && actual.is_a?(Hash)
+          return arrays_deep_eq?(actual, expected) if expected.is_a?(Array) && actual.is_a?(Array)
+          return hashes_deep_eq?(actual, expected) if expected.is_a?(Hash) && actual.is_a?(Hash)
 
           expected == actual
         end
 
-        def arrays_match?(actual, expected)
+        def arrays_deep_eq?(actual, expected)
           expected = expected.clone
 
           actual.each do |array|
@@ -33,7 +33,7 @@ module RSpec
           expected.empty?
         end
 
-        def hashes_match?(actual, expected)
+        def hashes_deep_eq?(actual, expected)
           return false if actual.keys.sort != expected.keys.sort
 
           # TODO: use any or all
