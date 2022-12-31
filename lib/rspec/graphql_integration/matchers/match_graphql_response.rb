@@ -28,7 +28,7 @@ module RSpec
           test_dir: '__FILE__'
         }.freeze
 
-        matcher :match_graphql_response do |_expected|
+        matcher :match_graphql_response do |_expected| # rubocop:disable Metrics/BlockLength
           match do |_actual|
             check_variables!
 
