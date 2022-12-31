@@ -2,19 +2,16 @@ module RSpec
   module GraphqlIntegration
     module Matchers
       ##
-      # This matcher recursively compares nested Ruby Hashes and Arrays while ignoring the order of
-      # elements in Arrays.
+      # This matcher recursively compares nested Ruby Hashes and Arrays while ignoring
+      # the order of elements in Arrays.
       module DeepEq
         extend RSpec::Matchers::DSL
 
-        matcher :deep_eq do |expected|
-          match do |actual|
-            deep_eq?(actual, expected)
-          end
-        end
+        matcher(:deep_eq) { |expected| match { |actual| deep_eq?(actual, expected) } }
 
         def deep_eq?(actual, expected)
           return arrays_deep_eq?(actual, expected) if expected.is_a?(Array) && actual.is_a?(Array)
+
           return hashes_deep_eq?(actual, expected) if expected.is_a?(Hash) && actual.is_a?(Hash)
 
           expected == actual
@@ -37,9 +34,8 @@ module RSpec
           return false if actual.keys.sort != expected.keys.sort
 
           # TODO: use any or all
-          actual.each do |key, value|
-            return false unless deep_eq?(value, expected[key])
-          end
+          actual.each { |key, value| return false unless deep_eq?(value, expected[key]) }
+
           true
         end
       end

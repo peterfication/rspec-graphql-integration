@@ -24,5 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "graphql", ">= 1.0.0"
   spec.add_dependency "rspec-core", ">= 3.0.0"
 
+  spec.add_development_dependency "prettier"
   spec.add_development_dependency "rubocop"
 end
