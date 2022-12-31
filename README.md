@@ -113,3 +113,7 @@ RSpec.configure do |config|
   # ...
 end
 ```
+
+## License
+
+MIT
