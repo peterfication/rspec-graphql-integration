@@ -25,7 +25,7 @@ module RSpec
         #
         # Key is the variable name, value is an example value.
         REQUIRED_TEST_VARIABLES = {
-          test_dir: "__FILE__"
+          test_dir: "__FILE__",
         }.freeze
 
         matcher :match_graphql_response do |_expected| # rubocop:disable Metrics/BlockLength
@@ -63,7 +63,7 @@ module RSpec
             response = schema_class.execute(
               load_query(test_dir, query_file),
               context: context,
-              variables: defined?(request_variables) ? request_variables : {}
+              variables: defined?(request_variables) ? request_variables : {},
             )
 
             response.values

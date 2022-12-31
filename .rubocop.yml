@@ -5,3 +5,7 @@ Style/FrozenStringLiteralComment:
   Enabled: False
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma

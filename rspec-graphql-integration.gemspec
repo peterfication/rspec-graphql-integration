@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.license               = "MIT"
 
   spec.metadata = {
-    "rubygems_mfa_required" => "true"
+    "rubygems_mfa_required" => "true",
   }
 
   spec.files                 = `git ls-files -- lib/*`.split("\n")
