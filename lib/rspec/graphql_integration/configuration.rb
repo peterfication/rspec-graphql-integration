@@ -9,8 +9,13 @@ module RSpec
       config.include(RSpec::GraphqlIntegration::Matchers::MatchGraphqlResponse, type: :graphql)
 
       config.instance_exec do
-        # TODO: check how rspec-rails does this
-        def infer_spec_type_from_file_location!
+        # This method is inspired by the one from the RSpec::Rails gem.
+        # See https://github.com/rspec/rspec-rails/blob/main/lib/rspec/rails/configuration.rb
+        # => #infer_spec_type_from_file_location!
+        #
+        # It has to be called explicitly in the spec_helper.rb file to be enabled.
+        # See the README for more information.
+        def infer_graphql_spec_type_from_file_location!
           escaped_path = Regexp.compile("#{%w[spec graphql].join("[\\\\/]")}[\\/]")
 
           define_derived_metadata(file_path: escaped_path) do |metadata|
