@@ -25,7 +25,7 @@ module RSpec
         #
         # Key is the variable name, value is an example value.
         REQUIRED_TEST_VARIABLES = {
-          test_dir: '__FILE__'
+          test_dir: "__FILE__"
         }.freeze
 
         matcher :match_graphql_response do |_expected| # rubocop:disable Metrics/BlockLength
@@ -74,7 +74,7 @@ module RSpec
             return schema_class_overwrite if defined?(schema_class_overwrite)
 
             if RSpec.configuration.graphql_schema_class.nil? && !Object.const_defined?(:Schema)
-              raise 'Please define config.graphql_schema_class in your rails_helper.rb'
+              raise "Please define config.graphql_schema_class in your rails_helper.rb"
             end
 
             RSpec.configuration.graphql_schema_class
