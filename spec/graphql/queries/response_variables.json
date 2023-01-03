@@ -1,0 +1,8 @@
+[
+  {
+    "currentUser": {
+      "id": "1",
+      "name": "{{user_name}}"
+    }
+  }
+]

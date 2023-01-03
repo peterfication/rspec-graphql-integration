@@ -1,5 +1,7 @@
 require "simplecov"
+require "byebug"
 require "pry"
+require "pry-byebug"
 
 SimpleCov.start do
   enable_coverage :branch
