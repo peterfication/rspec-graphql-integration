@@ -7,4 +7,7 @@ rubocop:
 rubocop-fix:
 	rubocop -a
 
-check: format rubocop
+test:
+	bundle exec rspec
+
+ci: format rubocop test
