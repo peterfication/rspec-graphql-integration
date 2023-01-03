@@ -12,3 +12,7 @@ Style/FrozenStringLiteralComment:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
+
+RSpec/DescribeClass:
+  Exclude:
+    - spec/graphql/queries/**/*

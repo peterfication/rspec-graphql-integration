@@ -1,11 +1,12 @@
 require "simplecov"
+require "pry"
 
 SimpleCov.start do
   enable_coverage :branch
   minimum_coverage 50
 end
 
-require_relative "../lib/rspec/graphql_integration"
+require_relative "./support/graphql_integration"
 
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

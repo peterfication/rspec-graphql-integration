@@ -52,8 +52,8 @@ _`current_user_spec.rb`_
 
 ```ruby
 RSpec.describe "Query.currentUser" do
-  # The test_dir is needed to load the query and response files. Maybe this can be achieved differently.
-  let(:test_dir) { __FILE__ }
+  # The test_file is needed to load the query and response files. Maybe this can be achieved differently.
+  let(:test_file) { __FILE__ }
   let(:user) { create(:user) }
   let(:context) { { current_user: user } }
   let(:response_variables) { { user_id: user.id, user_email: user.email } }

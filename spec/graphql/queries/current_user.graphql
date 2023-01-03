@@ -1,6 +1,6 @@
-query Test {
+query {
   currentUser {
     id
-    email
+    name
   }
 }

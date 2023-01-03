@@ -23,11 +23,45 @@ module RSpec
         end
 
         ##
+        # This error is thrown if neither the default query file is present nor
+        # the query_file_overwrite variable is set in a test.
+        class DefaultQueryFileMissing < StandardError
+          def initialize(default_query_file)
+            super <<~TEXT
+                No default query file found for this test.
+
+                Please create either a default query file:
+                #{default_query_file}
+
+                or define a file with the query_file_overwrite variable:
+                let(:query_file_overwrite) { "my_query_file.graphql" }
+              TEXT
+          end
+        end
+
+        ##
+        # This error is thrown if neither the default query file is present nor
+        # the response_file_overwrite variable is set in a test.
+        class DefaultResponseFileMissing < StandardError
+          def initialize(default_response_file)
+            super <<~TEXT
+                No default response file found for this test.
+
+                Please create either a default response file:
+                #{default_response_file}
+
+                or define a file with the response_file_overwrite variable:
+                let(:response_file_overwrite) { "my_response_file.json" }
+              TEXT
+          end
+        end
+
+        ##
         # Defines the required variables as a hash for a test that uses
         # the GraphQL response matcher.
         #
         # Key is the variable name, value is an example value.
-        REQUIRED_TEST_VARIABLES = { test_dir: "__FILE__" }.freeze
+        REQUIRED_TEST_VARIABLES = { test_file: "__FILE__" }.freeze
 
         matcher(:match_graphql_response) do |_expected| # rubocop:disable Metrics/BlockLength
           match do |_actual|
@@ -47,14 +81,15 @@ module RSpec
 
           def check_variables!
             REQUIRED_TEST_VARIABLES.each do |variable_name, example_value|
-              unless defined?(send(variable_name))
-                raise TestVariableMissing.new(variable_name, example_value)
-              end
+              send(variable_name)
+            rescue NameError => _e
+              raise TestVariableMissing.new(variable_name, example_value)
             end
           end
 
           def expected_response
-            expected_response = load_response(test_dir, response_template, response_variables)
+            expected_response =
+              load_response(response_file, defined?(response_variables) ? response_variables : {})
 
             expected_response = [expected_response] unless expected_response.is_a?(Array)
 
@@ -64,12 +99,36 @@ module RSpec
           def actual_response
             response =
               schema_class.execute(
-                load_query(test_dir, query_file),
-                context: context,
+                File.read(query_file),
+                context: defined?(context) ? context : {},
                 variables: defined?(request_variables) ? request_variables : {},
               )
 
             response.values
+          end
+
+          def query_file
+            return query_file_overwrite if defined?(query_file_overwrite)
+
+            default_query_file_name = test_file.split("/").last.gsub("_spec.rb", ".graphql")
+            default_query_file = File.join(File.dirname(test_file), default_query_file_name)
+
+            raise DefaultQueryFileMissing, default_query_file unless File.exist?(default_query_file)
+
+            default_query_file
+          end
+
+          def response_file
+            return response_file_overwrite if defined?(response_file_overwrite)
+
+            default_response_file_name = test_file.split("/").last.gsub("_spec.rb", ".json")
+            default_response_file = File.join(File.dirname(test_file), default_response_file_name)
+
+            unless File.exist?(default_response_file)
+              raise DefaultResponseFileMissing, default_response_file
+            end
+
+            default_response_file
           end
 
           def schema_class
@@ -85,28 +144,36 @@ module RSpec
         end
 
         ##
-        # Loads a query in a GraphQL file.
-        #
-        # Example:
-        # load_query(__FILE__, 'current_user/query.graphql'),
-        def load_query(dir, filename)
-          File.read(File.join(File.dirname(dir), filename))
-        end
-
-        ##
         # Loads a response in a JSON file and substitute the passed variables that
         # are surrounded by {{...}} in the file.
         #
         # Example:
         # load_response(
-        #   __FILE__,
-        #   'current_user/response.json',
+        #   "current_user.json",
         #   {
-        #     user_id: user.id,
+        #     user_id: 1,
         #   },
         # )
-        def load_response(dir, filename, variables = {})
-          json_file = File.read(File.join(File.dirname(dir), filename))
+        #
+        # current_user.json:
+        # {
+        #   "data": {
+        #     "currentUser": {
+        #       "id": "{{user_id}}",
+        #     }
+        #   }
+        # }
+        #
+        # Result:
+        # {
+        #   "data": {
+        #     "currentUser": {
+        #     "id": "1",
+        #     }
+        #   }
+        # }
+        def load_response(filename, variables = {})
+          json_file = File.read(filename)
           variables.each { |key, value| json_file.gsub!("\"{{#{key}}}\"", JSON.dump(value)) }
 
           JSON.parse(json_file)
