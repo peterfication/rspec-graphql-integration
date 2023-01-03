@@ -21,3 +21,11 @@ jobs:
         with:
           bundler-cache: true
       - run: bundle exec rbprettier --check '**/*.{rb,json,yml,md}'
+  Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: bundle exec rspec
