@@ -7,7 +7,9 @@ AllCops:
   NewCops: enable
 
 Style/FrozenStringLiteralComment:
-  Enabled: False
+  Enabled: false
+Style/BlockDelimiters:
+  Enabled: false
 
 Metrics/BlockLength:
   Exclude:
@@ -16,3 +18,7 @@ Metrics/BlockLength:
 RSpec/DescribeClass:
   Exclude:
     - spec/graphql/queries/**/*
+RSpec/ImplicitSubject:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
