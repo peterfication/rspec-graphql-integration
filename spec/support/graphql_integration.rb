@@ -1,5 +1,6 @@
 require_relative "../../lib/rspec/graphql_integration"
 require_relative "../example_schema/test_schema"
+require_relative "../example_schema/test_schema_b"
 
 RSpec.configure do |config|
   config.graphql_schema_class = TestSchema

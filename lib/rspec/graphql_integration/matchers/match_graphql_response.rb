@@ -9,6 +9,20 @@ module RSpec
         extend RSpec::Matchers::DSL
 
         ##
+        # This error is raised when the schema class is not set in the RSpec configuration.
+        class SchemaNotSetError < StandardError
+          def initialize
+            super <<~TEXT
+              Please define
+
+                config.graphql_schema_class
+
+              in your spec_helper.rb
+            TEXT
+          end
+        end
+
+        ##
         # This error is thrown if neither the default query file is present nor
         # the query_file_overwrite variable is set in a test.
         class DefaultQueryFileMissing < StandardError
@@ -115,9 +129,7 @@ module RSpec
             # It's possible to overwrite the schema class if an app has multiple schemas.
             return schema_class_overwrite if defined?(schema_class_overwrite)
 
-            if RSpec.configuration.graphql_schema_class.nil? && !Object.const_defined?(:Schema)
-              raise "Please define config.graphql_schema_class in your rails_helper.rb"
-            end
+            raise SchemaNotSetError if RSpec.configuration.graphql_schema_class.nil?
 
             RSpec.configuration.graphql_schema_class
           end
