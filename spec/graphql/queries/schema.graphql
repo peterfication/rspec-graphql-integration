@@ -1,0 +1,6 @@
+query {
+  otherUser {
+    id
+    name
+  }
+}

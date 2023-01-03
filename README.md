@@ -52,8 +52,6 @@ _`current_user_spec.rb`_
 
 ```ruby
 RSpec.describe "Query.currentUser" do
-  # The test_dir is needed to load the query and response files. Maybe this can be achieved differently.
-  let(:test_dir) { __FILE__ }
   let(:user) { create(:user) }
   let(:context) { { current_user: user } }
   let(:response_variables) { { user_id: user.id, user_email: user.email } }
@@ -113,6 +111,26 @@ RSpec.configure do |config|
   # ...
 end
 ```
+
+## Special variables
+
+A lot of things can be adjusted per test by setting special variables. You need to set them with `let`:
+
+```ruby
+let(:context) { { current_user: user } }
+```
+
+Here is an overview of what can be set:
+
+| Variable                  | Description                                                                                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `test_file_overwrite`     | Overwrites the location of the test file, if the automatic test file discovery is not working. This should normally not be necessary.       |
+| `schema_class_overwrite`  | Overwrites the schema class that is used for the test. This is only necessary if you have more than one GraphQL schema in your codebase.    |
+| `request_file_overwrite`  | Overwrites the filename of the request file, in case you want to reuse request files or put them inside a folder.                           |
+| `response_file_overwrite` | Overwrites the filename of the response file, in case you want to reuse response files or put them inside a folder.                         |
+| `context`                 | The GraphQL context that is passed to the GraphQL schema.                                                                                   |
+| `request_variables`       | Sets the variables that are passed into the GraphQL schema execution. This is necessary if you use variables inside your queries/mutations. |
+| `response_variables`      | Sets the variables that are used by the simple response template engine.                                                                    |
 
 ## License
 

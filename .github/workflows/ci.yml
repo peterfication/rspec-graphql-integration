@@ -5,6 +5,11 @@ on:
     branches: ["*"]
 
 jobs:
+  Spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: streetsidesoftware/cspell-action@v2
   Lint:
     runs-on: ubuntu-latest
     steps:

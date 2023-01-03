@@ -57,10 +57,13 @@ Style/WordArray:
 # Disable the trailing-comma rules as these depend on whether the user has added
 # or not `plugin/trailing_comma` for `syntax_tree`
 Style/TrailingCommaInArguments:
-  Enabled: false
+  Enabled: true
+  EnforcedStyleForMultiline: comma
 
 Style/TrailingCommaInArrayLiteral:
-  Enabled: false
+  Enabled: true
+  EnforcedStyleForMultiline: comma
 
 Style/TrailingCommaInHashLiteral:
-  Enabled: false
+  Enabled: true
+  EnforcedStyleForMultiline: comma

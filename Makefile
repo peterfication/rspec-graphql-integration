@@ -1,3 +1,6 @@
+spellcheck:
+	cspell '**/*'
+
 format:
 	rbprettier --write '**/*.{rb,json,yml,md}'
 
@@ -7,4 +10,7 @@ rubocop:
 rubocop-fix:
 	rubocop -a
 
-check: format rubocop
+test:
+	bundle exec rspec
+
+ci: spellcheck format rubocop test

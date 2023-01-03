@@ -1,0 +1,13 @@
+{
+  "version": "0.1",
+  "allowCompoundWords": true,
+  "dictionaryDefinitions": [
+    {
+      "name": "custom",
+      "path": "./.cspell.dictionary.txt"
+    }
+  ],
+  "ignorePaths": [".cspell.dictionary.txt", "coverage/**", "tmp/**"],
+  "dictionaries": ["custom"],
+  "language": "en"
+}
