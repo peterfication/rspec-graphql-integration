@@ -20,7 +20,7 @@ module RSpec
                 #{default_query_file}
 
                 or define a file with the query_file_overwrite variable:
-                let(:query_file_overwrite) { "my_query_file.graphql" }
+                let(:query_file_overwrite) { File.join(File.dirname(__FILE__), "my_query_file.graphql") }
               TEXT
           end
         end
@@ -37,7 +37,7 @@ module RSpec
                 #{default_response_file}
 
                 or define a file with the response_file_overwrite variable:
-                let(:response_file_overwrite) { "my_response_file.json" }
+                let(:response_file_overwrite) { File.join(File.dirname(__FILE__), "my_response_file.graphql") }
               TEXT
           end
         end
