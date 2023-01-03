@@ -1,3 +1,5 @@
+require "json"
+
 module RSpec
   module GraphqlIntegration
     module Matchers

@@ -1,7 +1,14 @@
 inherit_from: .rubocop_prettier.yml
 
+require:
+  - rubocop-rspec
+
 AllCops:
   NewCops: enable
 
 Style/FrozenStringLiteralComment:
   Enabled: False
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
