@@ -47,9 +47,6 @@ module RSpec
             # We need to test the responses with be_deep_equal so that we ignore
             # the order in nested hashes.
             expect(actual_response).to deep_eq(expected_response)
-          rescue RSpec::Expectations::ExpectationNotMetError => e
-            @error = e
-            raise
           end
 
           # For the failure message, we want to show the diff between the actual and

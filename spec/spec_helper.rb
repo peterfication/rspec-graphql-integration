@@ -3,7 +3,7 @@ require "pry"
 
 SimpleCov.start do
   enable_coverage :branch
-  minimum_coverage 50
+  minimum_coverage 99
 end
 
 require_relative "./support/graphql_integration"
