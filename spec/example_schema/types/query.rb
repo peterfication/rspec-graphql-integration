@@ -8,7 +8,12 @@ module Types
       argument(:user_name, String, required: false)
     end
     def current_user(**args)
-      { id: 1, name: "John Doe", name_from_variables: args[:user_name] }
+      {
+        id: 1,
+        name: "John Doe",
+        name_from_variables: args[:user_name],
+        name_from_context: context[:user_name],
+      }
     end
   end
 end
