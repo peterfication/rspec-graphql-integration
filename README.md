@@ -1,6 +1,7 @@
 # RSpec GraphQL Integration Testing
 
 [![codecov](https://codecov.io/gh/peterfication/rspec-graphql-integration/branch/main/graph/badge.svg?token=V5HKH4C2BA)](https://codecov.io/gh/peterfication/rspec-graphql-integration)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=peterfication_rspec-graphql-integration&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=peterfication_rspec-graphql-integration)
 
 This RSpec plugin simplifies integration tests for [GraphQL](https://graphql-ruby.org/).
 
