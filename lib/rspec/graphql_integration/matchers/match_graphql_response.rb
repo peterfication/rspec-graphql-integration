@@ -102,7 +102,9 @@ module RSpec
           end
 
           def query_file
-            return query_file_overwrite if defined?(query_file_overwrite)
+            if defined?(query_file_overwrite)
+              return File.join(File.dirname(test_file), query_file_overwrite)
+            end
 
             default_query_file_name = test_file.split("/").last.gsub("_spec.rb", ".graphql")
             default_query_file = File.join(File.dirname(test_file), default_query_file_name)
@@ -113,7 +115,9 @@ module RSpec
           end
 
           def response_file
-            return response_file_overwrite if defined?(response_file_overwrite)
+            if defined?(response_file_overwrite)
+              return File.join(File.dirname(test_file), response_file_overwrite)
+            end
 
             default_response_file_name = test_file.split("/").last.gsub("_spec.rb", ".json")
             default_response_file = File.join(File.dirname(test_file), default_response_file_name)
