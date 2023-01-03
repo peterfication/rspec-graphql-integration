@@ -23,24 +23,24 @@ module RSpec
         end
 
         ##
-        # This error is thrown if neither the default query file is present nor
-        # the query_file_overwrite variable is set in a test.
-        class DefaultQueryFileMissing < StandardError
-          def initialize(default_query_file)
+        # This error is thrown if neither the default request file is present nor
+        # the request_file_overwrite variable is set in a test.
+        class DefaultRequestFileMissing < StandardError
+          def initialize(default_request_file)
             super <<~TEXT
-                No default query file found for this test.
+                No default request file found for this test.
 
-                Please create either a default query file:
-                #{default_query_file}
+                Please create either a default request file:
+                #{default_request_file}
 
-                or define a file with the query_file_overwrite variable:
-                let(:query_file_overwrite) { File.join(File.dirname(__FILE__), "my_query_file.graphql") }
+                or define a file with the request_file_overwrite variable:
+                let(:request_file_overwrite) { File.join(File.dirname(__FILE__), "my_request_file.graphql") }
               TEXT
           end
         end
 
         ##
-        # This error is thrown if neither the default query file is present nor
+        # This error is thrown if neither the default request file is present nor
         # the response_file_overwrite variable is set in a test.
         class DefaultResponseFileMissing < StandardError
           def initialize(default_response_file)
@@ -84,7 +84,7 @@ module RSpec
           def actual_response
             response =
               schema_class.execute(
-                File.read(query_file),
+                File.read(request_file),
                 context: defined?(context) ? context : {},
                 variables: defined?(request_variables) ? request_variables : {},
               )
@@ -107,22 +107,24 @@ module RSpec
           end
 
           ##
-          # This method tries to get the file path for the query file.
+          # This method tries to get the file path for the request file.
           #
-          # If the query_file_overwrite variable is set, it uses that.
+          # If the request_file_overwrite variable is set, it uses that.
           #
-          # raises DefaultQueryFileMissing if no query file is found.
-          def query_file
-            if defined?(query_file_overwrite)
-              return File.join(File.dirname(test_file), query_file_overwrite)
+          # raises DefaultRequestFileMissing if no request file is found.
+          def request_file
+            if defined?(request_file_overwrite)
+              return File.join(File.dirname(test_file), request_file_overwrite)
             end
 
-            default_query_file_name = test_file.split("/").last.gsub("_spec.rb", ".graphql")
-            default_query_file = File.join(File.dirname(test_file), default_query_file_name)
+            default_request_file_name = test_file.split("/").last.gsub("_spec.rb", ".graphql")
+            default_request_file = File.join(File.dirname(test_file), default_request_file_name)
 
-            raise DefaultQueryFileMissing, default_query_file unless File.exist?(default_query_file)
+            unless File.exist?(default_request_file)
+              raise DefaultRequestFileMissing, default_request_file
+            end
 
-            default_query_file
+            default_request_file
           end
 
           ##
@@ -130,7 +132,7 @@ module RSpec
           #
           # If the response_file_overwrite variable is set, it uses that.
           #
-          # raises DefaultQueryFileMissing if no response file is found.
+          # raises DefaultRequestFileMissing if no response file is found.
           def response_file
             if defined?(response_file_overwrite)
               return File.join(File.dirname(test_file), response_file_overwrite)
