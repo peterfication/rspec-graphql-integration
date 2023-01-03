@@ -5,7 +5,8 @@ require "pry-byebug"
 
 SimpleCov.start do
   enable_coverage :branch
-  minimum_coverage 99
+  primary_coverage :branch
+  minimum_coverage 100
 end
 
 require_relative "./support/graphql_integration"
