@@ -1,5 +1,7 @@
 # RSpec GraphQL Integration Testing
 
+[![codecov](https://codecov.io/gh/peterfication/rspec-graphql-integration/branch/main/graph/badge.svg?token=V5HKH4C2BA)](https://codecov.io/gh/peterfication/rspec-graphql-integration)
+
 This RSpec plugin simplifies integration tests for [GraphQL](https://graphql-ruby.org/).
 
 **This is still an alpha version.**
