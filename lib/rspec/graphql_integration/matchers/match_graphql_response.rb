@@ -67,6 +67,8 @@ module RSpec
           # the expected response and the standard eq matcher from RSpec does that best.
           failure_message { expect(actual_response).to eq(expected_response) }
 
+          ##
+          # Loads the response file and substitutes the variables in the response file.
           def expected_response
             expected_response =
               load_response(response_file, defined?(response_variables) ? response_variables : {})
@@ -76,6 +78,9 @@ module RSpec
             expected_response
           end
 
+          ##
+          # Executes the query with the context and the variables against the schema and
+          # returns the response.
           def actual_response
             response =
               schema_class.execute(
@@ -101,6 +106,12 @@ module RSpec
             caller_location.path
           end
 
+          ##
+          # This method tries to get the file path for the query file.
+          #
+          # If the query_file_overwrite variable is set, it uses that.
+          #
+          # raises DefaultQueryFileMissing if no query file is found.
           def query_file
             if defined?(query_file_overwrite)
               return File.join(File.dirname(test_file), query_file_overwrite)
@@ -114,6 +125,12 @@ module RSpec
             default_query_file
           end
 
+          ##
+          # This method tries to get the file path for the response file.
+          #
+          # If the response_file_overwrite variable is set, it uses that.
+          #
+          # raises DefaultQueryFileMissing if no response file is found.
           def response_file
             if defined?(response_file_overwrite)
               return File.join(File.dirname(test_file), response_file_overwrite)
@@ -129,6 +146,12 @@ module RSpec
             default_response_file
           end
 
+          ##
+          # This method gets the schema class from the RSpec configuration.
+          #
+          # If schema_class_overwrite is set, it uses that.
+          #
+          # raises SchemaNotSetError if the schema class is not set.
           def schema_class
             # It's possible to overwrite the schema class if an app has multiple schemas.
             return schema_class_overwrite if defined?(schema_class_overwrite)
