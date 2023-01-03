@@ -9,20 +9,6 @@ module RSpec
         extend RSpec::Matchers::DSL
 
         ##
-        # This error is thrown when a variable is missing that is required for
-        # the GraphQL response matcher.
-        class TestVariableMissing < ArgumentError
-          def initialize(variable_name, example_value)
-            super <<~TEXT
-              Test variable #{variable_name} is missing.
-
-              Please define it, e.g. with:
-              let(:#{variable_name}) { #{example_value} }
-            TEXT
-          end
-        end
-
-        ##
         # This error is thrown if neither the default query file is present nor
         # the query_file_overwrite variable is set in a test.
         class DefaultQueryFileMissing < StandardError
@@ -56,17 +42,8 @@ module RSpec
           end
         end
 
-        ##
-        # Defines the required variables as a hash for a test that uses
-        # the GraphQL response matcher.
-        #
-        # Key is the variable name, value is an example value.
-        REQUIRED_TEST_VARIABLES = { test_file: "__FILE__" }.freeze
-
         matcher(:match_graphql_response) do |_expected| # rubocop:disable Metrics/BlockLength
           match do |_actual|
-            check_variables!
-
             # We need to test the responses with be_deep_equal so that we ignore
             # the order in nested hashes.
             expect(actual_response).to deep_eq(expected_response)
@@ -78,14 +55,6 @@ module RSpec
           # For the failure message, we want to show the diff between the actual and
           # the expected response and the standard eq matcher from RSpec does that best.
           failure_message { expect(actual_response).to eq(expected_response) }
-
-          def check_variables!
-            REQUIRED_TEST_VARIABLES.each do |variable_name, example_value|
-              send(variable_name)
-            rescue NameError => _e
-              raise TestVariableMissing.new(variable_name, example_value)
-            end
-          end
 
           def expected_response
             expected_response =
@@ -105,6 +74,20 @@ module RSpec
               )
 
             response.values
+          end
+
+          ##
+          # This method tries to get the file path for the file that is running the tests.
+          #
+          # The magic of this method can be overwritten by defining:
+          # let(:test_file_overwrite) { __FILE__ }
+          def test_file
+            return test_file_overwrite if defined?(test_file_overwrite)
+
+            caller_location =
+              caller_locations.find { |location| location.path.include?("/spec/graphql") }
+
+            caller_location.path
           end
 
           def query_file
