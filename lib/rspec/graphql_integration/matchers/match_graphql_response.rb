@@ -121,6 +121,19 @@ module RSpec
           end
 
           ##
+          # This method defines the folder where the request and response files are stored.
+          #
+          # It's either the folder of the file that is running the tests or a subfolder
+          # named like the test file.
+          def files_folder
+            if RSpec.configuration.graphql_put_files_in_folder
+              test_file.gsub("_spec.rb", "")
+            else
+              File.dirname(test_file)
+            end
+          end
+
+          ##
           # This method tries to get the file path for the request file.
           #
           # If the request_file_overwrite variable is set, it uses that.
@@ -128,17 +141,27 @@ module RSpec
           # raises DefaultRequestFileMissing if no request file is found.
           def request_file
             if defined?(request_file_overwrite)
-              return File.join(File.dirname(test_file), request_file_overwrite)
+              return File.join(files_folder, request_file_overwrite)
             end
 
-            default_request_file_name = test_file.split("/").last.gsub("_spec.rb", ".graphql")
-            default_request_file = File.join(File.dirname(test_file), default_request_file_name)
+            default_request_file = File.join(files_folder, default_request_file_name)
 
             unless File.exist?(default_request_file)
               raise DefaultRequestFileMissing, default_request_file
             end
 
             default_request_file
+          end
+
+          ##
+          # The default request file is either called like the test file without _spec
+          # but with .graphql or it's in the subfolder of the test file called "request.graphql".
+          def default_request_file_name
+            if RSpec.configuration.graphql_put_files_in_folder
+              "request.graphql"
+            else
+              test_file.split("/").last.gsub("_spec.rb", ".graphql")
+            end
           end
 
           ##
@@ -149,17 +172,27 @@ module RSpec
           # raises DefaultRequestFileMissing if no response file is found.
           def response_file
             if defined?(response_file_overwrite)
-              return File.join(File.dirname(test_file), response_file_overwrite)
+              return File.join(files_folder, response_file_overwrite)
             end
 
-            default_response_file_name = test_file.split("/").last.gsub("_spec.rb", ".json")
-            default_response_file = File.join(File.dirname(test_file), default_response_file_name)
+            default_response_file = File.join(files_folder, default_response_file_name)
 
             unless File.exist?(default_response_file)
               raise DefaultResponseFileMissing, default_response_file
             end
 
             default_response_file
+          end
+
+          ##
+          # The default response file is either called like the test file without _spec
+          # but with .json or it's in the subfolder of the test file called "response.json".
+          def default_response_file_name
+            if RSpec.configuration.graphql_put_files_in_folder
+              "response.json"
+            else
+              test_file.split("/").last.gsub("_spec.rb", ".json")
+            end
           end
 
           ##
