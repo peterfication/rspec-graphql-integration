@@ -4,6 +4,7 @@ module RSpec
   module GraphqlIntegration
     def self.initialize_configuration(config) # rubocop:disable Metrics/MethodLength
       config.add_setting(:graphql_schema_class, default: nil)
+      config.add_setting(:graphql_put_files_in_folder, default: false)
 
       config.include(RSpec::GraphqlIntegration::Matchers::DeepEq, type: :graphql)
       config.include(RSpec::GraphqlIntegration::Matchers::MatchGraphqlResponse, type: :graphql)

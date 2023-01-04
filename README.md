@@ -103,6 +103,18 @@ RSpec.configure do |config|
 end
 ```
 
+### Files in folder
+
+The default behavior for the request and response files is that they are named like the test file but instead of `_spec.rb` they end with `.graphql` and `.json`. If you want the files to be in a folder named like the test file, activate this option. Then the matcher will look for `<test_file_without_spec.rb>/(request.graphql|response.json)` instead of `<test_file_without_spec.rb>.(graphql|json)`.
+
+```ruby
+RSpec.configure do |config|
+  # ...
+  config.graphql_put_files_in_folder = true
+  # ...
+end
+```
+
 ### Spec type from file location
 
 Like with the [`RSpec::Rails`](https://github.com/rspec/rspec-rails), this gem can infer the spec type (`graphql`) from the spec file location. If you want this to happen, you have to enable this explicitly:
