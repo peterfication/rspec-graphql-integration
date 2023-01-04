@@ -1,0 +1,14 @@
+schema {
+  query: QueryB
+}
+
+type QueryB {
+  otherUser: User!
+}
+
+type User {
+  id: ID!
+  name: String!
+  nameFromContext: String
+  nameFromVariables: String
+}

@@ -1,0 +1,10 @@
+type Query {
+  currentUser(userName: String): User!
+}
+
+type User {
+  id: ID!
+  name: String!
+  nameFromContext: String
+  nameFromVariables: String
+}
