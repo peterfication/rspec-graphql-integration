@@ -1,17 +1,32 @@
-# RSpec GraphQL Integration Testing
+<p align="center">
+  <img src="logo.png" width="200" \>
+</p>
 
-[![codecov](https://codecov.io/gh/peterfication/rspec-graphql-integration/branch/main/graph/badge.svg?token=V5HKH4C2BA)](https://codecov.io/gh/peterfication/rspec-graphql-integration)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=peterfication_rspec-graphql-integration&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=peterfication_rspec-graphql-integration)
+<h1 align="center">RSpec GraphQL Integration Testing</h1>
 
-This RSpec plugin simplifies integration tests for [GraphQL](https://graphql-ruby.org/).
+<p align="center">
+  <a href="https://github.com/peterfication/rspec-graphql-integration/actions?query=branch%3Amain+">
+    <img alt="CI" src="https://github.com/peterfication/rspec-graphql-integration/actions/workflows/ci.yml/badge.svg" \>
+  </a>
+  <a href="https://codecov.io/gh/peterfication/rspec-graphql-integration">
+    <img alt="CodeCov" src="https://codecov.io/gh/peterfication/rspec-graphql-integration/branch/main/graph/badge.svg?token=V5HKH4C2BA" \>
+  </a>
+  <a href="https://sonarcloud.io/summary/new_code?id=peterfication_rspec-graphql-integration">
+    <img alt="Maintainability Rating" src="https://sonarcloud.io/api/project_badges/measure?project=peterfication_rspec-graphql-integration&metric=sqale_rating" \>
+  </a>
+</p>
 
-## Matchers
+<p align="center">
+  This <a href="https://rspec.info/">RSpec</a> plugin simplifies integration tests for <a href="https://graphql-ruby.org/">GraphQL</a>.
+</p>
 
-This plugin mainly consists of a matcher called `match_graphql_response` that executes a query or mutation against the defined schema and checks the response against a JSON response. Internally, there is also a `deep_eq` matcher to ignore the order in JSON arrays and objects.
+## Introduction
 
-## Idea behind this plugin
+This plugin mainly consists of a matcher called `match_graphql_response` that executes a query or mutation against the defined schema and checks the response against a JSON response.
 
-### The problem
+### Idea behind this plugin
+
+#### The problem
 
 When writing GraphQL integration tests, you write your query in a multiline string, get the response, parse it (probably with a helper) and write some expectations, maybe even expecting a whole multi-dimensional `Hash`. This could then look something like this:
 
@@ -43,7 +58,7 @@ For small queries, this is fine. But for big queries (and hence, big responses) 
 
 Another issue is that we can't leverage the GraphQL language server while writing/maintaining these integration tests.
 
-### The solution provided by this gem
+#### The solution provided by this gem
 
 This gem tries to improve this situation by moving the query and the response in their own files with a proper file type. This way, the integration test files are smaller and can focus on mocking data/instances. Also, the GraphQL language server will give you autocompletion/linting in your GraphQL files (if you've set up your editor for it).
 
@@ -61,7 +76,7 @@ RSpec.describe "Query.currentUser" do
 end
 ```
 
-_`current_user_query.graphql`_
+_`current_user.graphql`_
 
 ```graphql
 query {
@@ -72,7 +87,7 @@ query {
 }
 ```
 
-_`current_user_response.json`_
+_`current_user.json`_
 
 ```json
 {
