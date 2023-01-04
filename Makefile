@@ -2,13 +2,13 @@ spellcheck:
 	cspell '**/*'
 
 format:
-	rbprettier --write '**/*.{rb,json,yml,md}'
+	bundle exec rbprettier --write '**/*.{rb,json,yml,md}'
 
 rubocop:
-	rubocop
+	bundle exec rubocop
 
 rubocop-fix:
-	rubocop -a
+	bundle exec rubocop -a
 
 test:
 	bundle exec rspec

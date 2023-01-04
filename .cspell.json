@@ -7,7 +7,7 @@
       "path": "./.cspell.dictionary.txt"
     }
   ],
-  "ignorePaths": [".cspell.dictionary.txt", "coverage/**", "tmp/**"],
+  "ignorePaths": [".cspell.dictionary.txt", "coverage/**", "tmp/**", "graphql/**"],
   "dictionaries": ["custom"],
   "language": "en"
 }
