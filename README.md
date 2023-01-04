@@ -5,8 +5,6 @@
 
 This RSpec plugin simplifies integration tests for [GraphQL](https://graphql-ruby.org/).
 
-**This is still an alpha version.**
-
 ## Matchers
 
 This plugin mainly consists of a matcher called `match_graphql_response` that executes a query or mutation against the defined schema and checks the response against a JSON response. Internally, there is also a `deep_eq` matcher to ignore the order in JSON arrays and objects.
