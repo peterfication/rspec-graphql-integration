@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rspec-graphql-integration (0.1.0)
+    rspec-graphql-integration (0.2.0)
       graphql (>= 1.0.0)
       rspec-core (>= 3.0.0)
 
