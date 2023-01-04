@@ -15,6 +15,8 @@ module RSpec
           expected == actual
         end
 
+        ##
+        # Check that two arrays are deep equal, ignoring the order.
         def arrays_deep_eq?(actual, expected)
           expected = expected.clone
 
@@ -28,13 +30,12 @@ module RSpec
           expected.empty?
         end
 
+        ##
+        # Check that two hashes are deep equal, ignoring the order of keys.
         def hashes_deep_eq?(actual, expected)
           return false if actual.keys.sort != expected.keys.sort
 
-          # TODO: use any or all
-          actual.each { |key, value| return false unless deep_eq?(value, expected[key]) }
-
-          true
+          actual.all? { |key, value| deep_eq?(value, expected[key]) }
         end
       end
     end
