@@ -58,9 +58,14 @@ module RSpec
 
         matcher(:match_graphql_response) do |_expected| # rubocop:disable Metrics/BlockLength
           match do |_actual|
-            # We need to test the responses with be_deep_equal so that we ignore
+            # expected_response needs to be loaded first because it might contain variables
+            # that are required in the request and that aren't loaded yet. Such variables
+            # could be database objects that could be created while loading the response.
+            expected_response
+
+            # We need to test the responses with DeepEq so that we ignore
             # the order in nested hashes.
-            expect(actual_response).to deep_eq(expected_response)
+            DeepEq.deep_eq?(actual_response, expected_response)
           end
 
           # For the failure message, we want to show the diff between the actual and
@@ -70,26 +75,35 @@ module RSpec
           ##
           # Loads the response file and substitutes the variables in the response file.
           def expected_response
-            expected_response =
-              load_response(response_file, defined?(response_variables) ? response_variables : {})
+            @expected_response ||=
+              begin
+                expected_response =
+                  load_response(
+                    response_file,
+                    defined?(response_variables) ? response_variables : {},
+                  )
 
-            expected_response = [expected_response] unless expected_response.is_a?(Array)
+                expected_response = [expected_response] unless expected_response.is_a?(Array)
 
-            expected_response
+                expected_response
+              end
           end
 
           ##
           # Executes the query with the context and the variables against the schema and
           # returns the response.
           def actual_response
-            response =
-              schema_class.execute(
-                File.read(request_file),
-                context: defined?(context) ? context : {},
-                variables: defined?(request_variables) ? request_variables : {},
-              )
+            @actual_response ||=
+              begin
+                response =
+                  schema_class.execute(
+                    File.read(request_file),
+                    context: defined?(context) ? context : {},
+                    variables: defined?(request_variables) ? request_variables : {},
+                  )
 
-            response.values
+                response.values
+              end
           end
 
           ##
