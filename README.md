@@ -104,6 +104,8 @@ _`current_user.json`_
 
 ## Configuration
 
+You can have a look at the [RSpec GraphQL integration configuration](spec/support/graphql_integration.rb) of this gem to get started.
+
 ### Schema class
 
 You need to define the schema class that is used to execute the queries against. You can also define a main schema, but overwrite this for specific tests with `let(:schema_class_overwrite) { MyOtherSchema }`.
