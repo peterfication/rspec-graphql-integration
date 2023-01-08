@@ -211,7 +211,7 @@ module RSpec
           # If schema_class_overwrite is set, it uses that.
           #
           # @raise [SchemaNotSetError] If the schema class is not set.
-          # @return [GraphQL::Schema] The schema class.
+          # @return [Class] The schema class.
           def schema_class
             # It's possible to overwrite the schema class if an app has multiple schemas.
             return schema_class_overwrite if defined?(schema_class_overwrite)
