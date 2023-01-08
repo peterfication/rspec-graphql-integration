@@ -111,6 +111,8 @@ module RSpec
           #
           # The magic of this method can be overwritten by defining:
           # let(:test_file_overwrite) { __FILE__ }
+          #
+          # @return [String] The file path of the file that is running the tests.
           def test_file
             return test_file_overwrite if defined?(test_file_overwrite)
 
@@ -125,6 +127,8 @@ module RSpec
           #
           # It's either the folder of the file that is running the tests or a subfolder
           # named like the test file.
+          #
+          # @return [String] The folder where the request and response files are stored.
           def files_folder
             if RSpec.configuration.graphql_put_files_in_folder
               test_file.gsub("_spec.rb", "")
@@ -138,7 +142,8 @@ module RSpec
           #
           # If the request_file_overwrite variable is set, it uses that.
           #
-          # raises DefaultRequestFileMissing if no request file is found.
+          # @raise [DefaultRequestFileMissing] If no request file is found.
+          # @return [String] The file path of the request file.
           def request_file
             if defined?(request_file_overwrite)
               return File.join(files_folder, request_file_overwrite)
@@ -156,6 +161,8 @@ module RSpec
           ##
           # The default request file is either called like the test file without _spec
           # but with .graphql or it's in the subfolder of the test file called "request.graphql".
+          #
+          # @return [String] The default request file name.
           def default_request_file_name
             if RSpec.configuration.graphql_put_files_in_folder
               "request.graphql"
@@ -169,7 +176,8 @@ module RSpec
           #
           # If the response_file_overwrite variable is set, it uses that.
           #
-          # raises DefaultRequestFileMissing if no response file is found.
+          # @raise [DefaultResponseFileMissing] If no response file is found.
+          # @return [String] The file path of the response file.
           def response_file
             if defined?(response_file_overwrite)
               return File.join(files_folder, response_file_overwrite)
@@ -187,6 +195,8 @@ module RSpec
           ##
           # The default response file is either called like the test file without _spec
           # but with .json or it's in the subfolder of the test file called "response.json".
+          #
+          # @return [String] The default response file name.
           def default_response_file_name
             if RSpec.configuration.graphql_put_files_in_folder
               "response.json"
@@ -200,7 +210,8 @@ module RSpec
           #
           # If schema_class_overwrite is set, it uses that.
           #
-          # raises SchemaNotSetError if the schema class is not set.
+          # @raise [SchemaNotSetError] If the schema class is not set.
+          # @return [Class] The schema class.
           def schema_class
             # It's possible to overwrite the schema class if an app has multiple schemas.
             return schema_class_overwrite if defined?(schema_class_overwrite)
@@ -240,6 +251,11 @@ module RSpec
         #     }
         #   }
         # }
+        #
+        # @param [String] filename The file path of the response file.
+        # @param [Hash{Symbol => String}] variables The variables that should be substituted
+        #   in the response file.
+        # @return [Hash{String => Hash{String => Hash}}] The response as a hash.
         def load_response(filename, variables = {})
           json_file = File.read(filename)
           variables.each { |key, value| json_file.gsub!("\"{{#{key}}}\"", JSON.dump(value)) }

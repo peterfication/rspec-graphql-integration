@@ -18,6 +18,14 @@ jobs:
         with:
           bundler-cache: true
       - run: bundle exec rubocop
+  Typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: bundle exec solargraph typecheck
   Format:
     runs-on: ubuntu-latest
     steps:
