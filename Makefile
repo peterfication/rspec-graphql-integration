@@ -10,6 +10,9 @@ rubocop:
 rubocop-fix:
 	bundle exec rubocop -a
 
+typecheck:
+	bundle exec solargraph typecheck
+
 test:
 	bundle exec rspec
 
