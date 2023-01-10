@@ -35,11 +35,20 @@ jobs:
           bundler-cache: true
       - run: bundle exec rbprettier --check '**/*.{rb,json,yml,md}'
   Tests:
+    name: "Test with Ruby ${{ matrix.ruby }}"
+    strategy:
+      matrix:
+        include:
+          - ruby: 3.2
+          - ruby: 3.1
+          - ruby: 3.0
+          - ruby: 2.7
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
         with:
+          ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
       - run: bundle exec rspec
       - uses: codecov/codecov-action@v3
