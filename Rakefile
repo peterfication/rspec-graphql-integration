@@ -20,6 +20,7 @@ GraphQL::RakeTask.new(
 
 namespace :graphql do
   namespace :schema do
+    desc "Dump the test GraphQL schema to a file"
     task :dump do
       Rake::Task["graphql:schema:dump"].invoke
     end
