@@ -111,6 +111,8 @@ You can have a look at the [RSpec GraphQL integration configuration](spec/suppor
 You need to define the schema class that is used to execute the queries against. You can also define a main schema, but overwrite this for specific tests with `let(:schema_class_overwrite) { MyOtherSchema }`.
 
 ```ruby
+require "rspec/graphql_integration"
+
 RSpec.configure do |config|
   # ...
   config.graphql_schema_class = MySchema
@@ -123,6 +125,8 @@ end
 The default behavior for the request and response files is that they are named like the test file but instead of `_spec.rb` they end with `.graphql` and `.json`. If you want the files to be in a folder named like the test file, activate this option. Then the matcher will look for `<test_file_without_spec.rb>/(request.graphql|response.json)` instead of `<test_file_without_spec.rb>.(graphql|json)`.
 
 ```ruby
+require "rspec/graphql_integration"
+
 RSpec.configure do |config|
   # ...
   config.graphql_put_files_in_folder = true
@@ -135,6 +139,8 @@ end
 Like with the [`RSpec::Rails`](https://github.com/rspec/rspec-rails), this gem can infer the spec type (`graphql`) from the spec file location. If you want this to happen, you have to enable this explicitly:
 
 ```ruby
+require "rspec/graphql_integration"
+
 RSpec.configure do |config|
   # ...
   config.infer_graphql_spec_type_from_file_location!
