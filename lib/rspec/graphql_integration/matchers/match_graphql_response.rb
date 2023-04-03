@@ -9,6 +9,10 @@ module RSpec
         extend RSpec::Matchers::DSL
 
         ##
+        # This is used for determining the folder where the request and response files are stored.
+        SPEC_FILE_NAME_ENDING = "_spec.rb".freeze
+
+        ##
         # This error is raised when the schema class is not set in the RSpec configuration.
         class SchemaNotSetError < StandardError
           def initialize
@@ -131,7 +135,7 @@ module RSpec
           # @return [String] The folder where the request and response files are stored.
           def files_folder
             if RSpec.configuration.graphql_put_files_in_folder
-              test_file.gsub("_spec.rb", "")
+              test_file.gsub(SPEC_FILE_NAME_ENDING, "")
             else
               File.dirname(test_file)
             end
@@ -167,7 +171,7 @@ module RSpec
             if RSpec.configuration.graphql_put_files_in_folder
               "request.graphql"
             else
-              test_file.split("/").last.gsub("_spec.rb", ".graphql")
+              test_file.split("/").last.gsub(SPEC_FILE_NAME_ENDING, ".graphql")
             end
           end
 
@@ -201,7 +205,7 @@ module RSpec
             if RSpec.configuration.graphql_put_files_in_folder
               "response.json"
             else
-              test_file.split("/").last.gsub("_spec.rb", ".json")
+              test_file.split("/").last.gsub(SPEC_FILE_NAME_ENDING, ".json")
             end
           end
 
