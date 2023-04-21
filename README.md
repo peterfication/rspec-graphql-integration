@@ -14,6 +14,9 @@
   <a href="https://sonarcloud.io/summary/new_code?id=peterfication_rspec-graphql-integration">
     <img alt="Maintainability Rating" src="https://sonarcloud.io/api/project_badges/measure?project=peterfication_rspec-graphql-integration&metric=sqale_rating" \>
   </a>
+  <a href="https://codeatlas.dev/github/peterfication/rspec-graphql-integration/main">
+    <img alt="Codeatlas Codebase visualized" src="https://img.shields.io/badge/Codeatlas-Codebase_visualized-323b4f?link=https://codeatlas.dev/github/peterfication/rspec-graphql-integration/main" \>
+  </a>
 </p>
 
 <p align="center">
