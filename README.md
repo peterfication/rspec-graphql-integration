@@ -171,6 +171,10 @@ Here is an overview of what can be set:
 | `request_variables`       | Sets the variables that are passed into the GraphQL schema execution. This is necessary if you use variables inside your queries/mutations. |
 | `response_variables`      | Sets the variables that are used by the simple response template engine.                                                                    |
 
+## Development
+
+Useful commands are defined in the [`Justfile`](Justfile) and can be listed with [`just`](https://github.com/casey/just).
+
 ## License
 
 MIT
