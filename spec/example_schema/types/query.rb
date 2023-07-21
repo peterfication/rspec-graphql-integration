@@ -1,6 +1,6 @@
 require "graphql"
 
-require_relative "./objects/user"
+require_relative "objects/user"
 
 ##
 # This class is for simulating a database

@@ -1,6 +1,6 @@
 require "graphql"
 
-require_relative "./objects/user"
+require_relative "objects/user"
 
 module Types
   class QueryB < GraphQL::Schema::Object
