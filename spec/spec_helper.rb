@@ -9,7 +9,7 @@ SimpleCov.start do
   minimum_coverage 100
 end
 
-require_relative "./support/graphql_integration"
+require_relative "support/graphql_integration"
 
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
