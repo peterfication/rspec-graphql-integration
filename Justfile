@@ -13,6 +13,10 @@ spellcheck:
 format:
   bundle exec rbprettier --write '**/*.{graphql,rb,json,yml,md}'
 
+# Dump the GraphQL schema
+graphql-schema-dump:
+  rake graphql:schema:dump && bundle exec rbprettier --write '**/*.{graphql,rb,json,yml,md}'
+
 # Lint the Ruby files with Rubocop
 rubocop:
   bundle exec rubocop
