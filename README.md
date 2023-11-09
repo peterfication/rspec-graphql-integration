@@ -17,6 +17,9 @@
   <a href="https://codeatlas.dev/github/peterfication/rspec-graphql-integration/main">
     <img alt="Codeatlas Codebase visualized" src="https://img.shields.io/badge/Codeatlas-Codebase_visualized-323b4f?link=https://codeatlas.dev/github/peterfication/rspec-graphql-integration/main" \>
   </a>
+  <a href="https://rubygems.org/gems/rspec-graphql-integration">
+    <img src="https://badge.fury.io/rb/rspec-graphql-integration.svg" alt="Gem Version" height="18">
+  </a>
 </p>
 
 <p align="center">
