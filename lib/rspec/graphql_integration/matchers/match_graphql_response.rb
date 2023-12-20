@@ -16,7 +16,7 @@ module RSpec
         # This error is raised when the schema class is not set in the RSpec configuration.
         class SchemaNotSetError < StandardError
           def initialize
-            super <<~TEXT
+            super(<<~TEXT)
               Please define
 
                 config.graphql_schema_class
@@ -31,7 +31,7 @@ module RSpec
         # the request_file_overwrite variable is set in a test.
         class DefaultRequestFileMissing < StandardError
           def initialize(default_request_file)
-            super <<~TEXT
+            super(<<~TEXT)
                 No default request file found for this test.
 
                 Please create either a default request file:
@@ -48,7 +48,7 @@ module RSpec
         # the response_file_overwrite variable is set in a test.
         class DefaultResponseFileMissing < StandardError
           def initialize(default_response_file)
-            super <<~TEXT
+            super(<<~TEXT)
                 No default response file found for this test.
 
                 Please create either a default response file:
