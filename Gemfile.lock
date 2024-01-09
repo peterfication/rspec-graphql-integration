@@ -143,6 +143,7 @@ DEPENDENCIES
   prettier
   pry
   pry-byebug
+  racc
   rake
   rspec
   rspec-graphql-integration!

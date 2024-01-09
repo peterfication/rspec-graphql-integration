@@ -26,6 +26,12 @@
   <a href="https://github.com/peterfication/rspec-graphql-integration/actions/workflows/ruby-nightly.yml">
     <img alt="CI" src="https://github.com/peterfication/rspec-graphql-integration/actions/workflows/ruby-nightly.yml/badge.svg" \>
   </a>
+  <a href="https://github.com/peterfication/rspec-graphql-integration/actions/workflows/truffleruby-nightly.yml">
+    <img alt="CI" src="https://github.com/peterfication/rspec-graphql-integration/actions/workflows/truffleruby-nightly.yml/badge.svg" \>
+  </a>
+  <a href="https://github.com/peterfication/rspec-graphql-integration/actions/workflows/jruby-nightly.yml">
+    <img alt="CI" src="https://github.com/peterfication/rspec-graphql-integration/actions/workflows/jruby-nightly.yml/badge.svg" \>
+  </a>
 </p>
 
 <p align="center">

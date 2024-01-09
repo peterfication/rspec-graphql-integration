@@ -1,12 +1,16 @@
-require "simplecov"
-require "byebug"
-require "pry"
-require "pry-byebug"
+begin
+  require "simplecov"
+  require "byebug"
+  require "pry"
+  require "pry-byebug"
 
-SimpleCov.start do
-  enable_coverage :branch
-  primary_coverage :branch
-  minimum_coverage 100
+  SimpleCov.start do
+    enable_coverage :branch
+    primary_coverage :branch
+    minimum_coverage 100
+  end
+rescue LoadError
+  # In TruffleRuby and JRuby, those gems are not installed.
 end
 
 require_relative "support/graphql_integration"
