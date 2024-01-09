@@ -1,0 +1,17 @@
+name: Ruby Nightly
+
+on:
+  schedule:
+    # Checks daily
+    - cron: "0 0 * * *"
+
+jobs:
+  TestsOnNightly:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ruby-head
+          bundler-cache: true
+      - run: bundle exec rspec

@@ -1,6 +1,7 @@
 codecov
 fcontext
 fdescribe
+racc
 rbprettier
 rubocop
 srand
