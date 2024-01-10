@@ -1,9 +1,10 @@
 name: JRuby Nightly
 
-on:
-  schedule:
-    # Checks daily
-    - cron: "0 0 * * *"
+on: push
+# on:
+#   schedule:
+#     # Checks daily
+#     - cron: "0 0 * * *"
 
 jobs:
   TestsOnNightly:
