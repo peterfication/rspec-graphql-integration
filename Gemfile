@@ -5,8 +5,6 @@ gemspec
 gem "rake"
 gem "rspec"
 
-gem "racc" # Needed for JRuby, see https://github.com/jruby/jruby/issues/6581
-
 platforms :mri do
   gem "byebug"
   gem "prettier"
@@ -17,4 +15,9 @@ platforms :mri do
   gem "rubocop-rspec"
   gem "simplecov"
   gem "solargraph"
+end
+
+platforms :jruby do
+  # Needed for JRuby, see https://github.com/jruby/jruby/issues/6581
+  gem "racc"
 end

@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: rm Gemfile.lock
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: truffleruby-head
