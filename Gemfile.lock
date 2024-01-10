@@ -16,7 +16,7 @@ GEM
     diff-lcs (1.5.0)
     docile (1.4.0)
     e2mmap (0.1.0)
-    graphql (2.2.3)
+    graphql (2.2.4)
       racc (~> 1.4)
     haml (6.3.0)
       temple (>= 0.8.2)
@@ -32,8 +32,6 @@ GEM
       kramdown (~> 2.0)
     language_server-protocol (3.17.0.3)
     method_source (1.0.0)
-    nokogiri (1.16.0-arm64-darwin)
-      racc (~> 1.4)
     nokogiri (1.16.0-java)
       racc (~> 1.4)
     nokogiri (1.16.0-x86_64-linux)
@@ -137,8 +135,6 @@ GEM
     yard (0.9.34)
 
 PLATFORMS
-  arm64-darwin-21
-  arm64-darwin-23
   java
   x86_64-linux
 
