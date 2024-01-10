@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.files                 = `git ls-files -- lib/*`.split("\n")
   spec.require_paths         = ["lib"]
 
-  spec.required_ruby_version = ">= 2.7"
+  spec.required_ruby_version = ">= 3.0"
 
   spec.add_dependency "graphql", ">= 1.0.0"
   spec.add_dependency "rspec-core", ">= 3.0.0"
