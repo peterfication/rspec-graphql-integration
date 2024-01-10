@@ -23,7 +23,9 @@ GEM
       thor
       tilt
     jaro_winkler (1.5.6)
+    jaro_winkler (1.5.6-java)
     json (2.7.1)
+    json (2.7.1-java)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -31,6 +33,8 @@ GEM
     language_server-protocol (3.17.0.3)
     method_source (1.0.0)
     nokogiri (1.16.0-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.0-java)
       racc (~> 1.4)
     nokogiri (1.16.0-x86_64-linux)
       racc (~> 1.4)
@@ -49,7 +53,7 @@ GEM
     pry-byebug (3.10.1)
       byebug (~> 11.0)
       pry (>= 0.13, < 0.15)
-    racc (1.7.3)
+    racc (1.7.3-java)
     rainbow (3.1.1)
     rake (13.1.0)
     rbs (2.8.4)
@@ -135,6 +139,7 @@ GEM
 PLATFORMS
   arm64-darwin-21
   arm64-darwin-23
+  java
   x86_64-linux
 
 DEPENDENCIES
