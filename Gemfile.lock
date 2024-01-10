@@ -16,16 +16,14 @@ GEM
     diff-lcs (1.5.0)
     docile (1.4.0)
     e2mmap (0.1.0)
-    graphql (2.2.3)
+    graphql (2.2.4)
       racc (~> 1.4)
     haml (6.3.0)
       temple (>= 0.8.2)
       thor
       tilt
     jaro_winkler (1.5.6)
-    jaro_winkler (1.5.6-java)
     json (2.7.1)
-    json (2.7.1-java)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -34,12 +32,10 @@ GEM
     method_source (1.0.0)
     nokogiri (1.16.0-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.0-java)
-      racc (~> 1.4)
     nokogiri (1.16.0-x86_64-linux)
       racc (~> 1.4)
     parallel (1.24.0)
-    parser (3.2.2.4)
+    parser (3.3.0.2)
       ast (~> 2.4.1)
       racc
     prettier (4.0.4)
@@ -53,11 +49,11 @@ GEM
     pry-byebug (3.10.1)
       byebug (~> 11.0)
       pry (>= 0.13, < 0.15)
-    racc (1.7.3-java)
+    racc (1.7.3)
     rainbow (3.1.1)
     rake (13.1.0)
     rbs (2.8.4)
-    regexp_parser (2.8.3)
+    regexp_parser (2.9.0)
     reverse_markdown (2.1.1)
       nokogiri
     rexml (3.2.6)
@@ -67,13 +63,13 @@ GEM
       rspec-mocks (~> 3.12.0)
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
-    rspec-expectations (3.12.1)
+    rspec-expectations (3.12.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-mocks (3.12.1)
+    rspec-mocks (3.12.6)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-support (3.12.0)
+    rspec-support (3.12.1)
     rubocop (1.59.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -87,13 +83,13 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.30.0)
       parser (>= 3.2.1.0)
-    rubocop-capybara (2.19.0)
+    rubocop-capybara (2.20.0)
       rubocop (~> 1.41)
-    rubocop-factory_bot (2.24.0)
-      rubocop (~> 1.33)
+    rubocop-factory_bot (2.25.1)
+      rubocop (~> 1.41)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    rubocop-rspec (2.25.0)
+    rubocop-rspec (2.26.1)
       rubocop (~> 1.40)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
@@ -139,7 +135,6 @@ GEM
 PLATFORMS
   arm64-darwin-21
   arm64-darwin-23
-  java
   x86_64-linux
 
 DEPENDENCIES
@@ -158,4 +153,4 @@ DEPENDENCIES
   solargraph
 
 BUNDLED WITH
-   2.4.1
+   2.5.3
