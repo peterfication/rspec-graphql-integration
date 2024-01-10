@@ -41,7 +41,6 @@ jobs:
           - ruby: 3.2
           - ruby: 3.1
           - ruby: 3.0
-          - ruby: 2.7
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
