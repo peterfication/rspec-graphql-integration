@@ -2,5 +2,6 @@ query {
   currentUser {
     id
     name
+    roles
   }
 }

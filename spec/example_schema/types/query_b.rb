@@ -6,7 +6,7 @@ module Types
   class QueryB < GraphQL::Schema::Object
     field(:other_user, Types::Objects::User, null: false)
     def other_user
-      { id: 1, name: "John Doe" }
+      { id: 1, name: "John Doe", roles: [] }
     end
   end
 end
