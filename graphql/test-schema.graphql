@@ -7,4 +7,5 @@ type User {
   name: String!
   nameFromContext: String
   nameFromVariables: String
+  roles: [String!]!
 }

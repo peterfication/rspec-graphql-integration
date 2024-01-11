@@ -23,6 +23,7 @@ module Types
         name: "John Doe",
         name_from_variables: args[:user_name],
         name_from_context: context[:user_name],
+        roles: %w[],
       }
     end
   end

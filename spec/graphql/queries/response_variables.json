@@ -2,7 +2,8 @@
   {
     "currentUser": {
       "id": "1",
-      "name": "{{user_name}}"
+      "name": "{{user_name}}",
+      "roles": "{{user_roles}}"
     }
   }
 ]

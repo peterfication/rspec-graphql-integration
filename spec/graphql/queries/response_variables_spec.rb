@@ -6,9 +6,9 @@ RSpec.describe "Query.currentUser" do
       # of a database object during the loading of the response file.
       allow(User).to receive(:first).and_return(user)
 
-      { user_name: "Maria Doe" }
+      { user_name: "Maria Doe", user_roles: %w[admin user] }
     end
-    let(:user) { { id: 1, name: "Maria Doe" } }
+    let(:user) { { id: 1, name: "Maria Doe", roles: %w[admin user] } }
 
     it { is_expected.to match_graphql_response }
   end
