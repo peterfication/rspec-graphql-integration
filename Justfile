@@ -3,7 +3,7 @@ default:
   just --list
 
 # Run all checks from CI
-ci: spellcheck format rubocop test
+ci: graphql-schema-dump spellcheck format rubocop test
 
 # Run the spellchecker
 spellcheck:
