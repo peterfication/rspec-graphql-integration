@@ -18,7 +18,7 @@ GEM
     docile (1.4.0)
     e2mmap (0.1.0)
     fiber-storage (1.0.0)
-    graphql (2.4.1)
+    graphql (2.4.3)
       base64
       fiber-storage
     haml (6.3.0)
