@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Drop support for Ruby 3.0 and 3.1
 - Drop support for Ruby 2.7
 
 ## [0.2.0] - 2023-01-04
