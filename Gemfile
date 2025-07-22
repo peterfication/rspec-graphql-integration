@@ -7,9 +7,11 @@ gem "rspec"
 
 platforms :mri do
   gem "byebug"
+  gem "irb"
   gem "prettier"
   gem "pry"
   gem "pry-byebug"
+  gem "reline"
   gem "rubocop"
   gem "rubocop-rake"
   gem "rubocop-rspec"
