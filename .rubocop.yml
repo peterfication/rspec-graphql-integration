@@ -1,6 +1,6 @@
 inherit_from: .rubocop_prettier.yml
 
-require:
+plugins:
   - rubocop-rake
   - rubocop-rspec
 
