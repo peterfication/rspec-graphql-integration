@@ -10,6 +10,7 @@ class User
   end
 end
 
+# rubocop:disable Style/OneClassPerFile
 module Types
   class Query < GraphQL::Schema::Object
     field(:current_user, Types::Objects::User, null: false) do
@@ -28,3 +29,4 @@ module Types
     end
   end
 end
+# rubocop:enable Style/OneClassPerFile
